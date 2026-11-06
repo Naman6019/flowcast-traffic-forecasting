@@ -1,0 +1,118 @@
+# FlowCast configuration. Every path, date, threshold and seed used by the pipeline lives here.
+seed: 42
+timezone: Asia/Kolkata
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  models: models
+  reports: reports
+  figures: reports/figures
+
+raw_files:
+  traffic: traffic_sensor_log.csv
+  weather: weather_observations.csv
+  calendar: calendar_events.csv
+
+grid:
+  start: "2025-01-01"
+  end: "2025-05-31"
+  window_minutes: 30
+  windows_per_day: 48
+
+# Train / validation / test, all inclusive and chronological (plan D6).
+splits:
+  train: ["2025-01-01", "2025-04-15"]
+  val: ["2025-04-16", "2025-05-08"]
+  test: ["2025-05-09", "2025-05-31"]
+  warmup_days: 7
+  cv_folds: 5
+
+horizons: [1, 2, 3, 4]
+
+ranges:
+  volume_min: 0
+  speed_min_exclusive: 0
+  speed_max: 200
+  occupancy_min: 0
+  occupancy_max: 100
+
+cleaning:
+  interpolate_limit_windows: 2
+  zscore_threshold: 4.0
+  iqr_multiplier: 1.5
+
+# Upper bounds are exclusive; volume / (capacity / 2) (Data Dictionary section 2).
+congestion:
+  labels: [Free-flow, Moderate, Heavy, Severe]
+  bands: [0.5, 0.8, 1.0]
+
+weather:
+  vocabulary: [Clear, Cloudy, Rain, Fog]
+  label_map:
+    clear: Clear
+    cloudy: Cloudy
+    overcast: Cloudy
+    rain: Rain
+    rainy: Rain
+    fog: Fog
+    foggy: Fog
+  low_visibility_m: 1000
+  temperature_bands: [10, 20, 30]
+
+peak_windows:
+  - ["07:30", "10:00"]
+  - ["17:00", "20:00"]
+
+tuning:
+  trials: {tree: 10, forest: 4, xgboost: 10, logistic: 3, svm_rbf: 3, svm_linear: 3}
+  svm_cv_folds: 3
+  deep_trials: 20
+  svm_subsample_rows: 30000
+  scratch_epochs: 1500
+
+deep:
+  device: auto  # auto, cuda or cpu. Auto falls back to CPU when no GPU is available.
+  sequence_lengths: [8, 16, 48]
+  hidden_sizes: [32, 64, 128]
+  num_layers: [1, 2]
+  dropouts: [0.1, 0.3]
+  learning_rates: [0.001, 0.0003]
+  batch_sizes: [256, 1024]
+  embedding_dim: 4
+  max_epochs: 30
+  patience: 6
+  grad_clip: 1.0
+  weight_decay: 0.00001
+  multitask_alpha: 0.5
+
+uncertainty:
+  levels: [0.8, 0.95]
+
+accident:
+  min_recall: 0.60
+
+# Real-data validation (src/real_data.py). Splits were fixed before any model was run on this data.
+real_data:
+  url: https://archive.ics.uci.edu/static/public/492/metro+interstate+traffic+volume.zip
+  csv_name: Metro_Interstate_Traffic_Volume.csv
+  csv_sha256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+  folder: data/external/i94
+  step_minutes: 60
+  windows_per_day: 24
+  horizons: [1, 2, 3, 4]
+  splits:
+    train: ["2012-10-02", "2016-12-31"]
+    val: ["2017-01-01", "2017-12-31"]
+    test: ["2018-01-01", "2018-09-30"]
+    warmup_days: 7
+    cv_folds: 5
+  peak_windows:
+    - ["06:00", "09:00"]
+    - ["15:00", "18:00"]
+  max_rain_mm: 100
+  weather_severity: [Squall, Thunderstorm, Snow, Rain, Drizzle, Fog, Smoke, Mist, Haze, Clouds, Clear]
+  deep_trials: 8
+  sequence_lengths: [12, 24, 48]
+  batch_sizes: [64, 256]

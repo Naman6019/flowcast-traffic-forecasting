@@ -1,0 +1,118 @@
+{
+  "intervals_95": {
+    "volume_mape_pct": [
+      8.398947916292116,
+      8.712424176735615
+    ],
+    "congestion_macro_f1": [
+      0.7498841021244494,
+      0.7981897249473973
+    ],
+    "accident_roc_auc": [
+      0.6081795950525544,
+      0.6826162382652222
+    ]
+  },
+  "volume": {
+    "rmse": 54.26641398565903,
+    "mae": 36.56422029969645,
+    "mape_pct": 8.545422880195247,
+    "r2": 0.9645125568223357
+  },
+  "congestion": {
+    "macro_f1": 0.7737926559685699,
+    "accuracy": 0.8791171982582158,
+    "macro_precision": 0.7705157249118102,
+    "macro_recall": 0.7795949729069539,
+    "f1_class0": 0.9619122012185597,
+    "f1_class1": 0.8291368291368292,
+    "f1_class2": 0.6464078693131917,
+    "f1_class3": 0.6577137242056993
+  },
+  "accident": {
+    "roc_auc": 0.6427943114321347,
+    "pr_auc": 0.02175566705395863,
+    "base_rate": 0.009751014179909933,
+    "top_decile_lift": 2.558108768678986,
+    "precision": 0.011474966170500677,
+    "recall": 0.8091603053435115,
+    "f1": 0.0226290227891338,
+    "flag_rate": 0.6875953701291451
+  },
+  "speed": {
+    "rmse": 3.4275547390456835,
+    "mae": 2.6386622830735407,
+    "mape_pct": 8.338540321411502,
+    "r2": 0.9143507997603242
+  },
+  "travel_time": {
+    "rmse": 1.03196522012091,
+    "mae": 0.40818575644817506,
+    "mape_pct": 8.50083229070394,
+    "r2": 0.8436255092171665
+  },
+  "benchmark": {
+    "selected_classical": "forest",
+    "selected_classical_test_rmse": 54.93360765995426,
+    "best_classical": "xgboost",
+    "best_classical_test_rmse": 54.62384101319492,
+    "deep": "lstm",
+    "deep_test_rmse": 54.26646729105961,
+    "gain_interval_95": [
+      0.27857224098539785,
+      1.128622172049746
+    ],
+    "deep_beats_classical": true,
+    "earned_complexity": false
+  },
+  "coverage": {
+    "volume_80": 79.519,
+    "volume_95": 94.603
+  },
+  "inference_seconds_per_horizon": {
+    "1": 4.14,
+    "2": 4.39,
+    "3": 4.58,
+    "4": 4.56
+  },
+  "rows_per_horizon": 172700,
+  "test_rows": 26869,
+  "criteria": [
+    {
+      "criterion": "Volume MAPE <= 12%",
+      "target": 12.0,
+      "value": 8.545422880195247,
+      "met": true
+    },
+    {
+      "criterion": "Congestion macro-F1 >= 0.80",
+      "target": 0.8,
+      "value": 0.7737926559685699,
+      "met": false
+    },
+    {
+      "criterion": "Accident ROC-AUC >= 0.75",
+      "target": 0.75,
+      "value": 0.6427943114321347,
+      "met": false
+    },
+    {
+      "criterion": "Sequence model beats best classical on test RMSE",
+      "target": 54.62384101319492,
+      "value": 54.26646729105961,
+      "met": true
+    },
+    {
+      "criterion": "80% band covers 78-82% of test values",
+      "target": 80.0,
+      "value": 79.519,
+      "met": true
+    },
+    {
+      "criterion": "Batch inference for one horizon <= 30 s",
+      "target": 30.0,
+      "value": 4.58,
+      "met": true
+    }
+  ]
+}

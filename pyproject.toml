@@ -1,0 +1,27 @@
+[project]
+name = "flowcast"
+version = "1.0.0"
+description = "FlowCast: short-horizon traffic, congestion, travel-time and accident-risk forecasting for the Northline Corridor."
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["notebooks", "data", "reports"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "D101", "D102", "D103"]
+ignore = ["E501", "E741", "C408"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011", "D"]
+"dashboard/*" = ["D"]
+"scripts/*" = ["D"]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+testpaths = ["tests"]
+addopts = "-q --basetemp=.pytest_tmp"
+markers = [
+  "slow: runs on the full raw dataset or trains real models (deselected in CI)",
+]

@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.coverage
+htmlcov/
+.pytest_cache/
+.pytest_tmp/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# The raw CSVs and the versioned dataset are deliverables. Everything else here is rebuilt by the pipeline.
+data/raw/*
+!data/raw/*.csv
+data/interim/*
+data/processed/*
+!data/processed/flowcast_v*.parquet
+!data/processed/dataset_manifest.json
+!data/**/.gitkeep
+
+# Binaries are rebuilt; model cards stay under version control.
+models/**/*.joblib
+models/**/*.pt
+models/**/*.json.tmp
+
+*.log
+
+models/**/*retrain-*/
+reports/last_retrain.json
+
+data/external/

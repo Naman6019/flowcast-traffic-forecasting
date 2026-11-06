@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pt binary
+*.joblib binary
+*.parquet binary
+# Source data stays byte-identical to what was delivered.
+data/raw/*.csv -text

@@ -1,0 +1,19 @@
+group,skill_change,target,metric
+Usual level for the slot,233.2597,volume,RMSE increase
+Recent volume,76.2826,volume,RMSE increase
+Today against usual,9.2323,volume,RMSE increase
+Calendar,7.7351,volume,RMSE increase
+Clock,1.6775,volume,RMSE increase
+Segment,1.5481,volume,RMSE increase
+Recent speed,0.9206,volume,RMSE increase
+Weather,0.4154,volume,RMSE increase
+Mix and operations,-0.0428,volume,RMSE increase
+Recent speed,0.0901,accident,AUC loss
+Weather,0.0358,accident,AUC loss
+Today against usual,0.0192,accident,AUC loss
+Recent volume,0.0151,accident,AUC loss
+Calendar,0.0075,accident,AUC loss
+Usual level for the slot,0.0057,accident,AUC loss
+Mix and operations,0.0039,accident,AUC loss
+Clock,0.0006,accident,AUC loss
+Segment,-0.0067,accident,AUC loss

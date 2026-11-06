@@ -1,0 +1,215 @@
+{
+  "version": "23243f3e",
+  "band_cuts": [
+    0.49,
+    0.78,
+    0.99
+  ],
+  "targets": {
+    "volume": {
+      "model": "forest",
+      "horizons": {
+        "1": {
+          "family": "forest",
+          "path": "models/volume/forest/h1-23243f3e",
+          "conformal": "models/volume/forest/h1-23243f3e/conformal.csv"
+        },
+        "2": {
+          "family": "forest",
+          "path": "models/volume/forest/h2-23243f3e",
+          "conformal": "models/volume/forest/h2-23243f3e/conformal.csv"
+        },
+        "3": {
+          "family": "forest",
+          "path": "models/volume/forest/h3-23243f3e",
+          "conformal": "models/volume/forest/h3-23243f3e/conformal.csv"
+        },
+        "4": {
+          "family": "forest",
+          "path": "models/volume/forest/h4-23243f3e",
+          "conformal": "models/volume/forest/h4-23243f3e/conformal.csv"
+        }
+      }
+    },
+    "speed": {
+      "model": "forest",
+      "horizons": {
+        "1": {
+          "family": "forest",
+          "path": "models/speed/forest/h1-23243f3e",
+          "conformal": "models/speed/forest/h1-23243f3e/conformal.csv"
+        },
+        "2": {
+          "family": "forest",
+          "path": "models/speed/forest/h2-23243f3e",
+          "conformal": "models/speed/forest/h2-23243f3e/conformal.csv"
+        },
+        "3": {
+          "family": "forest",
+          "path": "models/speed/forest/h3-23243f3e",
+          "conformal": "models/speed/forest/h3-23243f3e/conformal.csv"
+        },
+        "4": {
+          "family": "forest",
+          "path": "models/speed/forest/h4-23243f3e",
+          "conformal": "models/speed/forest/h4-23243f3e/conformal.csv"
+        }
+      }
+    },
+    "travel_time": {
+      "model": "forest",
+      "horizons": {
+        "1": {
+          "family": "forest",
+          "path": "models/travel_time/forest/h1-23243f3e",
+          "conformal": "models/travel_time/forest/h1-23243f3e/conformal.csv"
+        },
+        "2": {
+          "family": "forest",
+          "path": "models/travel_time/forest/h2-23243f3e",
+          "conformal": "models/travel_time/forest/h2-23243f3e/conformal.csv"
+        },
+        "3": {
+          "family": "forest",
+          "path": "models/travel_time/forest/h3-23243f3e",
+          "conformal": "models/travel_time/forest/h3-23243f3e/conformal.csv"
+        },
+        "4": {
+          "family": "forest",
+          "path": "models/travel_time/forest/h4-23243f3e",
+          "conformal": "models/travel_time/forest/h4-23243f3e/conformal.csv"
+        }
+      }
+    },
+    "congestion": {
+      "model": "regress_then_band_tuned",
+      "horizons": {
+        "1": {
+          "family": "regress_then_band_tuned",
+          "path": "models/volume/forest/h1-23243f3e"
+        },
+        "2": {
+          "family": "regress_then_band_tuned",
+          "path": "models/volume/forest/h2-23243f3e"
+        },
+        "3": {
+          "family": "regress_then_band_tuned",
+          "path": "models/volume/forest/h3-23243f3e"
+        },
+        "4": {
+          "family": "regress_then_band_tuned",
+          "path": "models/volume/forest/h4-23243f3e"
+        }
+      }
+    },
+    "accident": {
+      "model": "logistic",
+      "horizons": {
+        "1": {
+          "family": "logistic",
+          "path": "models/accident/logistic/h1-23243f3e",
+          "threshold": 0.4187905247341369,
+          "calibrator": "models/accident/logistic/h1-23243f3e/calibrator.joblib"
+        },
+        "2": {
+          "family": "logistic",
+          "path": "models/accident/logistic/h2-23243f3e",
+          "threshold": 0.42177953374413873,
+          "calibrator": "models/accident/logistic/h2-23243f3e/calibrator.joblib"
+        },
+        "3": {
+          "family": "logistic",
+          "path": "models/accident/logistic/h3-23243f3e",
+          "threshold": 0.43604484889709316,
+          "calibrator": "models/accident/logistic/h3-23243f3e/calibrator.joblib"
+        },
+        "4": {
+          "family": "logistic",
+          "path": "models/accident/logistic/h4-23243f3e",
+          "threshold": 0.4457552298343333,
+          "calibrator": "models/accident/logistic/h4-23243f3e/calibrator.joblib"
+        }
+      }
+    }
+  },
+  "deep": {
+    "model": "lstm",
+    "multitask": "lstm_multitask",
+    "models": {
+      "lstm": "models/volume/lstm/h1-23243f3e",
+      "gru": "models/volume/gru/h1-23243f3e",
+      "bilstm": "models/volume/bilstm/h1-23243f3e",
+      "lstm_multitask": "models/volume/lstm_multitask/h1-23243f3e"
+    },
+    "horizons": {
+      "1": {
+        "path": "models/volume/lstm/h1-23243f3e",
+        "conformal": "models/volume/lstm/h1-23243f3e/conformal.csv",
+        "val_rmse": 53.09398191642225,
+        "val_mape_pct": 8.511902167570213
+      },
+      "2": {
+        "path": "models/volume/lstm/h2-23243f3e",
+        "conformal": "models/volume/lstm/h2-23243f3e/conformal.csv",
+        "val_rmse": 53.56167862642448,
+        "val_mape_pct": 8.647079062589778
+      },
+      "3": {
+        "path": "models/volume/lstm/h3-23243f3e",
+        "conformal": "models/volume/lstm/h3-23243f3e/conformal.csv",
+        "val_rmse": 53.96805075504472,
+        "val_mape_pct": 8.714635380360532
+      },
+      "4": {
+        "path": "models/volume/lstm/h4-23243f3e",
+        "conformal": "models/volume/lstm/h4-23243f3e/conformal.csv",
+        "val_rmse": 54.188603412897436,
+        "val_mape_pct": 8.77753602357812
+      }
+    }
+  },
+  "production": {
+    "volume": "deep",
+    "volume_val_rmse": {
+      "classical": 54.99708501055032,
+      "deep": 53.09398191642225
+    },
+    "congestion": {
+      "model": "regress_then_band_tuned",
+      "kind": "band",
+      "cuts": [
+        0.49,
+        0.78,
+        0.99
+      ],
+      "val_macro_f1": 0.7680185060286293
+    },
+    "congestion_candidates": [
+      {
+        "model": "regress_then_band",
+        "kind": "band",
+        "cuts": [
+          0.5,
+          0.8,
+          1.0
+        ],
+        "val_macro_f1": 0.7667792464468337
+      },
+      {
+        "model": "regress_then_band_tuned",
+        "kind": "band",
+        "cuts": [
+          0.49,
+          0.78,
+          0.99
+        ],
+        "val_macro_f1": 0.7680185060286293
+      },
+      {
+        "model": "xgboost",
+        "kind": "direct",
+        "val_macro_f1": 0.7602852102307663
+      }
+    ]
+  }
+}
